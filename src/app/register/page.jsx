@@ -4,13 +4,27 @@ import { useState } from "react";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleRegistrationForm = (e) => {
+    e.preventDefault();
+    fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify({ email, phone, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   return (
-    <div className="h-screen mt-10">
+    <div className="mt-10">
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-semibold mb-8">Register</h1>
-        <form className="flex flex-col gap-8 items-center ">
+        <form
+          className="flex flex-col gap-8 items-center"
+          onSubmit={handleRegistrationForm}
+        >
           <input
             className="border rounded-lg p-3"
             type="email"
@@ -22,8 +36,8 @@ const Register = () => {
             className="border rounded-lg p-3"
             type="text"
             placeholder="Phone number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <input
             className="border rounded-lg p-3"
@@ -36,7 +50,9 @@ const Register = () => {
             Register
           </button>
         </form>
-        <div className="text-center mt-5 mb-2 text-gray-500">or login with</div>
+        <div className="text-center mt-5 mb-2 text-gray-500">
+          or register with
+        </div>
         <button className="w-[250px] rounded-xl bg-gray-600 py-2 px-4 text-white font-semibold flex items-center justify-center gap-4 text-lg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
