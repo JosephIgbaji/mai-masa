@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const page = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -70,4 +70,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Register;
